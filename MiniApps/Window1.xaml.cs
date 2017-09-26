@@ -139,8 +139,8 @@ namespace MiniApps
 			}
 		}
 		Bitmap GetBitmap(string text,System.Drawing.Brush brushFont)
-		{
-			const int HEIGHT=50;
+		{//source https://stackoverflow.com/questions/6311545/c-sharp-write-text-on-bitmap
+			const int HEIGHT=100;
 			const int WIDTH=200;
 			Bitmap bmp = new Bitmap(WIDTH,HEIGHT);
 
