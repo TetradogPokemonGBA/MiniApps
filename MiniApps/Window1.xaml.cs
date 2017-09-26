@@ -8,6 +8,8 @@
  */
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Reflection;
 using System.Text;
 using System.Windows;
@@ -16,6 +18,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using Gabriel.Cat.Extension;
 using Microsoft.Win32;
 using PokemonGBAFrameWork;
 using Gabriel.Cat.Wpf;
@@ -26,9 +29,24 @@ namespace MiniApps
 	/// </summary>
 	public partial class Window1 : Window
 	{
-		//poner aqui el nombre de la clase y en el metodo de la imagen también
+		static readonly Type Creditos=typeof(Creditos);
+		//poner aqui el nombre de la clase y en el metodo de la imagen si tengo el icono lo pongo :)
 		const string SISTEMAMTBW="SistemaMTBW";
-		static readonly string[] MiniApps={SISTEMAMTBW};
+		const string SCRIPTSDEGATILLOCONDICIONMAYORAFF="ScriptsDeGatilloCondicionMayorAFF";
+		const string QUITARTUTORIALBATALLAOAK="QuitarTutorialBatallaOak";
+		const string QUITARSISTEMADEAYUDAROJOYVERDE="QuitarSistemaDeAyudaRojoYVerde";
+		const string QUITARDIARIOPARTIDA="QuitarDiarioPartida";
+		const string MOSINMEDALAS="MOSinMedallas";
+		const string BORRARMOS="BorrarMos";
+		const string IMPEDIRCAPTURAVIASCRIPT="ImpedirCapturaViaScript";
+		const string GANAREXPERIENCIAALCAPTURARUNPOKEMON="GanarExperienciaAlCapturarUnPokemon";
+		const string EVOLUCIONARSINNATIONALDEX="EvolucionarSinNationalDex";
+		//de momento no esta acabada asi que no la pongo :)
+		//const string POKEMONEDITORSCRIPTING="PokemonEditorScripting";
+		//const string SHINYZER="Shinyzer";
+		//const string MUGSHOTS="Mugshots";
+		//const string ANIMACIONSPRITESCOMOESMERALDA="AnimacionSprites";
+		static readonly string[] MiniApps={SISTEMAMTBW,/*SCRIPTSDEGATILLOCONDICIONMAYORAFF,*/QUITARTUTORIALBATALLAOAK,QUITARSISTEMADEAYUDAROJOYVERDE,QUITARDIARIOPARTIDA,/*MOSINMEDALAS,*/BORRARMOS,IMPEDIRCAPTURAVIASCRIPT,GANAREXPERIENCIAALCAPTURARUNPOKEMON,EVOLUCIONARSINNATIONALDEX};
 		
 		RomGba rom;
 		EdicionPokemon edicion;
@@ -72,22 +90,22 @@ namespace MiniApps
 		SwitchImg PonSistema(string miniApp)
 		{
 			SwitchImg swMiniApp=null;
-			string nameSpace="PokemonGbaFrameWork."+miniApp;
 
 			
-			if((bool)Metodo(nameSpace,"Compatible",edicion,compilacion))
+			if((bool)Metodo(miniApp,"Compatible",edicion,compilacion))
 			{
 				swMiniApp=new SwitchImg();
+				swMiniApp.Name=miniApp;
 				//pongo la imagen
 				PonImagenes(swMiniApp,miniApp);
 				//pongo el click
-				swMiniApp.SwitchChanged+=(estaOn)=>{
-					if(estaOn)
+				swMiniApp.SwitchChanged+=(s,estaOff)=>{
+					if(!estaOff)
 					{
-						Metodo(nameSpace,"Desactivar",rom,edicion,compilacion);
+						Metodo(((SwitchImg)s).Name,"Desactivar",rom,edicion,compilacion);
 					}
 					else{
-						Metodo(nameSpace,"Activar",rom,edicion,compilacion);
+						Metodo(((SwitchImg)s).Name,"Activar",rom,edicion,compilacion);
 					}
 					try{
 						rom.Save();
@@ -101,7 +119,9 @@ namespace MiniApps
 					}
 				};
 				//si esta on
-				swMiniApp.EstadoOn=(bool)Metodo(nameSpace,"EstaActivado",rom,edicion,compilacion);
+				swMiniApp.EstadoOn=(bool)Metodo(miniApp,"EstaActivado",rom,edicion,compilacion);
+				//pongo los creditos en el Tag
+				swMiniApp.Tag=(Creditos)Type.GetType(Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp)).GetField("Creditos",BindingFlags.Static|BindingFlags.Public).GetValue(new Creditos());
 			}
 			return swMiniApp;
 			
@@ -111,18 +131,39 @@ namespace MiniApps
 		{
 			switch(miniApp)
 			{
-					case SISTEMAMTBW:
-					
+				default:
+					//pongo una imagen con el on y el off con el nombre de la miniapp
+					swMiniApp.ImgOn=GetBitmap(miniApp,System.Drawing.Brushes.Red).ToImage().Source;
+					swMiniApp.ImgOff=GetBitmap(miniApp,System.Drawing.Brushes.GreenYellow).ToImage().Source;
 					break;
 			}
 		}
-
-		object Metodo(string nameSpace,string nombreMetodo,params object[] parametros)
+		Bitmap GetBitmap(string text,System.Drawing.Brush brushFont)
 		{
-			Type tipo = Type.GetType(nameSpace);
+			const int HEIGHT=50;
+			const int WIDTH=200;
+			Bitmap bmp = new Bitmap(WIDTH,HEIGHT);
+
+			RectangleF rectf = new RectangleF(0, 0,WIDTH, HEIGHT);
+
+			Graphics g = Graphics.FromImage(bmp);
+
+			g.SmoothingMode = SmoothingMode.AntiAlias;
+			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+			g.PixelOffsetMode = PixelOffsetMode.HighQuality; 
+			g.DrawString(text, new Font("Arial",15), brushFont, rectf);
+
+			g.Flush();
+
+			return bmp;
+		}
+		object Metodo(string miniApp,string nombreMetodo,params object[] parametros)
+		{
+			
+			Type tipo;
 			Type[] tiposParametros=new Type[parametros.Length];
 			MethodInfo metodo;
-			
+			tipo =Type.GetType (Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp));
 			for(int i=0;i<tiposParametros.Length;i++)
 				tiposParametros[i]=parametros[i].GetType();
 			
