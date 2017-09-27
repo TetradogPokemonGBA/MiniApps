@@ -120,7 +120,7 @@ namespace MiniApps
 						
 					}
 				};
-				
+				swMiniApp.ToolTip=miniApp;
 				//pongo los creditos en el Tag
 				swMiniApp.Tag=(PokemonGBAFrameWork.Creditos)Type.GetType(Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp)).GetField("Creditos",BindingFlags.Static|BindingFlags.Public).GetValue(new PokemonGBAFrameWork.Creditos());
 			}
