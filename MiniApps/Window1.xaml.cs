@@ -29,7 +29,7 @@ namespace MiniApps
 	/// </summary>
 	public partial class Window1 : Window
 	{
-		static readonly Type Creditos=typeof(Creditos);
+		static readonly Type Creditos=typeof(PokemonGBAFrameWork.Creditos);
 		//poner aqui el nombre de la clase y en el metodo de la imagen si tengo el icono lo pongo :)
 		const string SISTEMAMTBW="SistemaMTBW";
 		const string SCRIPTSDEGATILLOCONDICIONMAYORAFF="ScriptsDeGatilloCondicionMayorAFF";
@@ -122,7 +122,7 @@ namespace MiniApps
 				};
 				
 				//pongo los creditos en el Tag
-				swMiniApp.Tag=(Creditos)Type.GetType(Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp)).GetField("Creditos",BindingFlags.Static|BindingFlags.Public).GetValue(new Creditos());
+				swMiniApp.Tag=(PokemonGBAFrameWork.Creditos)Type.GetType(Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp)).GetField("Creditos",BindingFlags.Static|BindingFlags.Public).GetValue(new PokemonGBAFrameWork.Creditos());
 			}
 			return swMiniApp;
 			
@@ -151,7 +151,7 @@ namespace MiniApps
 
 			g.SmoothingMode = SmoothingMode.AntiAlias;
 			g.InterpolationMode = InterpolationMode.HighQualityBicubic;
-			g.PixelOffsetMode = PixelOffsetMode.HighQuality; 
+			g.PixelOffsetMode = PixelOffsetMode.HighQuality;
 			g.DrawString(text, new Font("Arial",15), brushFont, rectf);
 
 			g.Flush();
@@ -173,7 +173,9 @@ namespace MiniApps
 		}
 		void MiSobre_Click(object sender, RoutedEventArgs e)
 		{
-			throw new NotImplementedException();
+
+			new Creditos(ugApps).ShowDialog();
+			
 		}
 	}
 }
