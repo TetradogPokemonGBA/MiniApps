@@ -133,8 +133,7 @@ namespace MiniApps
 			switch(miniApp)
 			{
 				case SISTEMAMTBW:
-					swMiniApp.ImgOn=Resource.SistemaMTBW.ToImage().Source;
-					swMiniApp.ImgOff=Resource.SistemaMTBW.ChangeColor(Gabriel.Cat.PixelColors.GrayScale).ToImage().Source;
+					PonImagenes(swMiniApp,Resource.SistemaMTBW);
 					break;
 				default:
 					//pongo una imagen con el on y el off con el nombre de la miniapp
@@ -142,6 +141,11 @@ namespace MiniApps
 					swMiniApp.ImgOff=GetBitmap(miniApp,System.Drawing.Brushes.GreenYellow).ToImage().Source;
 					break;
 			}
+		}
+		void PonImagenes(SwitchImg swMiniApp,Bitmap bmp)
+		{
+			swMiniApp.ImgOn=bmp.ToImage().Source;
+			swMiniApp.ImgOff=bmp.ChangeColor(Gabriel.Cat.PixelColors.GrayScale).ToImage().Source;
 		}
 		Bitmap GetBitmap(string text,System.Drawing.Brush brushFont)
 		{//source https://stackoverflow.com/questions/6311545/c-sharp-write-text-on-bitmap

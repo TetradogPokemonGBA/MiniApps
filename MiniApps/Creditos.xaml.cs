@@ -32,7 +32,7 @@ namespace MiniApps
 			PokemonGBAFrameWork.Creditos creditos;
 			SwitchImg sw;
 			StringBuilder strCreditosYLinkCodigo=new StringBuilder();
-			strCreditosYLinkCodigo.Append("Esta aplicación esta desarrollada por pikachu240(wahackforo)\n");
+			strCreditosYLinkCodigo.Append("Esta aplicación esta desarrollada por pikachu240(wahackforo)\nLas imagenes de las miniApps hechas por Sangus103(wahackforo)\n");
 			//creditos
 			if(ugApps.Children.Count==0)
 				strCreditosYLinkCodigo.Append("Los autores aparecen cuando cargas una rom\n");
