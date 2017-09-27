@@ -98,6 +98,8 @@ namespace MiniApps
 				swMiniApp.Name=miniApp;
 				//pongo la imagen
 				PonImagenes(swMiniApp,miniApp);
+				//si esta on
+				swMiniApp.EstadoOn=(bool)Metodo(miniApp,"EstaActivado",rom,edicion,compilacion);
 				//pongo el click
 				swMiniApp.SwitchChanged+=(s,estaOff)=>{
 					if(!estaOff)
@@ -118,8 +120,7 @@ namespace MiniApps
 						
 					}
 				};
-				//si esta on
-				swMiniApp.EstadoOn=(bool)Metodo(miniApp,"EstaActivado",rom,edicion,compilacion);
+				
 				//pongo los creditos en el Tag
 				swMiniApp.Tag=(Creditos)Type.GetType(Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp)).GetField("Creditos",BindingFlags.Static|BindingFlags.Public).GetValue(new Creditos());
 			}
