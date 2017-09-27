@@ -32,6 +32,9 @@
     <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Gabriel.Cat.DrawingStudio">
+      <HintPath>..\..\..\..\Desktop\Mis Programas\Gabriel.Cat.DrawingStudio\Gabriel.Cat.DrawingStudio\bin\Release\Gabriel.Cat.DrawingStudio.dll</HintPath>
+    </Reference>
     <Reference Include="Gabriel.Cat.Utilitats">
       <HintPath>..\..\..\..\Desktop\Mis Programas\Gabriel.Cat.Utilitats\Gabriel.Cat.Utilitats\bin\Release\Gabriel.Cat.Utilitats.dll</HintPath>
     </Reference>
@@ -81,6 +84,10 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\WPFAssemblyInfo.cs" />
+    <Compile Include="Resource.Designer.cs">
+      <DependentUpon>Resource.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+    </Compile>
     <Compile Include="Window1.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>Window1.xaml</DependentUpon>
@@ -98,6 +105,13 @@
       <Project>{52cf96db-a3aa-47d9-b0ba-7bb2834b68c7}</Project>
       <Name>PokemonGBAFrameWork</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <CustomToolNamespace>MiniApps</CustomToolNamespace>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

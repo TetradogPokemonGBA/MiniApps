@@ -132,6 +132,10 @@ namespace MiniApps
 		{
 			switch(miniApp)
 			{
+				case SISTEMAMTBW:
+					swMiniApp.ImgOn=Resource.SistemaMTBW.ToImage().Source;
+					swMiniApp.ImgOff=Resource.SistemaMTBW.ChangeColor(Gabriel.Cat.PixelColors.GrayScale).ToImage().Source;
+					break;
 				default:
 					//pongo una imagen con el on y el off con el nombre de la miniapp
 					swMiniApp.ImgOn=GetBitmap(miniApp,System.Drawing.Brushes.Red).ToImage().Source;
