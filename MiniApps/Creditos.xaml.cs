@@ -28,25 +28,11 @@ namespace MiniApps
 		public Creditos(UniformGrid ugApps)
 		{
 			InitializeComponent();
-			
-			PokemonGBAFrameWork.Creditos creditos;
-			SwitchImg sw;
-			StringBuilder strCreditosYLinkCodigo=new StringBuilder();
-			strCreditosYLinkCodigo.Append("Esta aplicación esta desarrollada por pikachu240(wahackforo)\nLas imagenes de las miniApps hechas por Sangus103(wahackforo)\n");
-			//creditos
-			if(ugApps.Children.Count==0)
-				strCreditosYLinkCodigo.Append("Los autores aparecen cuando cargas una rom\n");
-			else
-				for(int i=0;i<ugApps.Children.Count;i++)
+			for(int i=0;i<ugApps.Children.Count;i++)
 			{
-				sw=(SwitchImg)ugApps.Children[i];
-				creditos=sw.Tag as PokemonGBAFrameWork.Creditos;
-				strCreditosYLinkCodigo.Append(creditos.ToString(sw.Name));
-				strCreditosYLinkCodigo.Append("\n");
+				this.stkMiniApps.Children.Add(new ItemCreditos(ugApps.Children[i] as SwitchImg));
 			}
-			
-			strCreditosYLinkCodigo.Append("La aplicación es GNU quieres ver su código fuente?");
-			txtCreditos.Text=strCreditosYLinkCodigo.ToString();
+
 		}
 		void BtnNo_Click(object sender=null, RoutedEventArgs e=null)
 		{

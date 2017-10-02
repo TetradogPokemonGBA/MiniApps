@@ -63,6 +63,26 @@ namespace MiniApps {
 		/// <summary>
 		///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
 		/// </summary>
+		public static System.Drawing.Bitmap BorrarMO {
+			get {
+				object obj = ResourceManager.GetObject("BorrarMO", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+		
+		/// <summary>
+		///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+		/// </summary>
+		public static System.Drawing.Bitmap NoBorrarMO {
+			get {
+				object obj = ResourceManager.GetObject("NoBorrarMO", resourceCulture);
+				return ((System.Drawing.Bitmap)(obj));
+			}
+		}
+		
+		/// <summary>
+		///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+		/// </summary>
 		public static System.Drawing.Bitmap SistemaMTBW {
 			get {
 				object obj = ResourceManager.GetObject("SistemaMTBW", resourceCulture);

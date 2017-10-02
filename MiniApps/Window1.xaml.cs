@@ -91,7 +91,7 @@ namespace MiniApps
 		{
 			SwitchImg swMiniApp=null;
 
-			
+			NombreYDescripcion nombreYDescripcion;
 			if((bool)Metodo(miniApp,"Compatible",edicion,compilacion))
 			{
 				swMiniApp=new SwitchImg();
@@ -120,7 +120,8 @@ namespace MiniApps
 						
 					}
 				};
-				swMiniApp.ToolTip=miniApp;
+				nombreYDescripcion=new NombreYDescripcion(miniApp,(string)Type.GetType(Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp)).GetField("DESCRIPCION",BindingFlags.Static | BindingFlags.Public).GetValue(""));
+				swMiniApp.ToolTip=nombreYDescripcion;
 				//pongo los creditos en el Tag
 				swMiniApp.Tag=(PokemonGBAFrameWork.Creditos)Type.GetType(Creditos.AssemblyQualifiedName.Replace("Creditos",miniApp)).GetField("Creditos",BindingFlags.Static|BindingFlags.Public).GetValue(new PokemonGBAFrameWork.Creditos());
 			}
@@ -132,6 +133,11 @@ namespace MiniApps
 		{
 			switch(miniApp)
 			{
+				case BORRARMOS:
+					swMiniApp.ImgOn=Resource.BorrarMO.ToImage().Source;
+					swMiniApp.ImgOff=Resource.NoBorrarMO.ToImage().Source;
+					
+					break;
 				case SISTEMAMTBW:
 					PonImagenes(swMiniApp,Resource.SistemaMTBW);
 					break;
