@@ -6,7 +6,7 @@
 		<Grid.RowDefinitions>
 			<RowDefinition Height="20"/>
 			<RowDefinition/>
-			<RowDefinition Height="20"/>
+			<RowDefinition Height="40"/>
 		</Grid.RowDefinitions>
 		<TextBox Text="Aplicación desarrollada por Pikachu240(Wahackforo), Imagenes por Sangus103(Wahackforo)"/>
 		<ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
