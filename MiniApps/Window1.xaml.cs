@@ -41,12 +41,13 @@ namespace MiniApps
 		const string IMPEDIRCAPTURAVIASCRIPT="ImpedirCapturaViaScript";
 		const string GANAREXPERIENCIAALCAPTURARUNPOKEMON="GanarExperienciaAlCapturarUnPokemon";
 		const string EVOLUCIONARSINNATIONALDEX="EvolucionarSinNationalDex";
+		const string DESACTIVARANIMACIONMTMO="DesactivarAnimacionMTMO";
 		//de momento no esta acabada asi que no la pongo :)
 		//const string POKEMONEDITORSCRIPTING="PokemonEditorScripting";
 		//const string SHINYZER="Shinyzer";
 		//const string MUGSHOTS="Mugshots";
 		//const string ANIMACIONSPRITESCOMOESMERALDA="AnimacionSprites";
-		static readonly string[] MiniApps={SISTEMAMTBW,SCRIPTSDEGATILLOCONDICIONMAYORAFF,QUITARTUTORIALBATALLAOAK,QUITARSISTEMADEAYUDAROJOYVERDE,QUITARDIARIOPARTIDA,MOSINMEDALAS,BORRARMOS,IMPEDIRCAPTURAVIASCRIPT,GANAREXPERIENCIAALCAPTURARUNPOKEMON,EVOLUCIONARSINNATIONALDEX};
+		static readonly string[] MiniApps={SISTEMAMTBW,SCRIPTSDEGATILLOCONDICIONMAYORAFF,QUITARTUTORIALBATALLAOAK,QUITARSISTEMADEAYUDAROJOYVERDE,QUITARDIARIOPARTIDA,MOSINMEDALAS,BORRARMOS,IMPEDIRCAPTURAVIASCRIPT,GANAREXPERIENCIAALCAPTURARUNPOKEMON,EVOLUCIONARSINNATIONALDEX,DESACTIVARANIMACIONMTMO};
 		
 		RomGba rom;
 		EdicionPokemon edicion;
@@ -151,7 +152,7 @@ namespace MiniApps
 		void PonImagenes(SwitchImg swMiniApp,Bitmap bmp)
 		{
 			swMiniApp.ImgOn=bmp.ToImage().Source;
-			swMiniApp.ImgOff=bmp.ChangeColor(Gabriel.Cat.PixelColors.GrayScale).ToImage().Source;
+			swMiniApp.ImgOff=bmp.ChangeColor(Gabriel.Cat.FiltroImagen.GrayScale).ToImage().Source;
 		}
 		Bitmap GetBitmap(string text,System.Drawing.Brush brushFont)
 		{//source https://stackoverflow.com/questions/6311545/c-sharp-write-text-on-bitmap
